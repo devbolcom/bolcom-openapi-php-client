@@ -123,8 +123,8 @@ class TestClient {
 		return $list;
     }
 
-    public function getProduct($id) {
-		$httpResponse = $this->requestHelper->fetch('GET', '/openapi/services/rest/catalog/v3/products/' . $id);
+    public function getProduct($id,$queryParams='') {
+		$httpResponse = $this->requestHelper->fetch('GET', '/openapi/services/rest/catalog/v3/products/' . $id, $queryParams);
 		
 		$product = NULL;
 		if($this->requestHelper->getHttpResponseCode() == 200) {

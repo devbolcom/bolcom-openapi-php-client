@@ -1,9 +1,9 @@
 <?php
 
 class Request {
-	const SERVER = 'openapi.bol.com';
+	const SERVER = BOL_API_SERVER;
 	private $accessKey;
-	const PORT = '443';
+	const PORT = BOL_API_PORT;
 	private $secretAccessKey;
 	private $sessionId;
 	private $httpResponseCode;

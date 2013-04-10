@@ -2,12 +2,14 @@
 
 class Category {
 	private $id;
-	private $name;
+	private $categoryname;
+	private $productcount;
 	
 	public function __construct($categoryXml=NULL) {
 		if(!empty($categoryXml)) {
 			$this->id = (string)$categoryXml->Id;
-			$this->name = (string)$categoryXml->Name;
+			$this->categoryname = (string)$categoryXml->Name;
+			$this->productcount = (string)$categoryXml->ProductCount;
 		}
 	}
 	
@@ -15,9 +17,13 @@ class Category {
 		return $this->id;
 	}
 	
-	public function getName() {
-		return $this->name;
+	public function getCategoryName() {
+		return $this->categoryname;
 	}
+	
+    public function getProductCount() {
+        return $this->productcount;
+    }
 }
 
 ?>

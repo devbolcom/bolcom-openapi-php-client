@@ -1,6 +1,6 @@
 phpexamplecode
 ==============
-If you want to contribute to this code sample. You can do a for and a Pull request.
+If you want to contribute to this code sample. You can do a Fork and a Pull request on this repo.
 
 This application does the following requests:
 ------------------------------------------
@@ -27,12 +27,12 @@ What are the files included:
 
 Minimum requirements:
 ----------
-1. PHP 5.0 (of hoger)
+1. PHP 5.0 (or higher)
 
 
 Installation and running the application:
 ------------------------------------
 1. Get the code by forking or downloading the zip
 2. Upload all files (keep the directory structure) to a web-server
-3. Edit the file "classes/App.php" to add the right AccessKeyID and SecretAccessKey (request these at https://developers.bol.com/inloggen/?action=register)
-4. Open the browser and call the URL where your index.php file is
+3. Edit the file "config.php" to add the right AccessKeyID and SecretAccessKey (request this key and secret at https://developers.bol.com/inloggen/?action=register)
+4. Open the browser and call the URL where your index.php file is located
