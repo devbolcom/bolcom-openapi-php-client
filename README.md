@@ -4,10 +4,12 @@ If you want to contribute to this code sample. You can do a Fork and a Pull requ
 
 This application does the following requests:
 ------------------------------------------
+- Ping request
 - Product request
+- Recommandation request
 - Listresults request
 - Searchresults request
-
+- Basket requests
 
 What are the files included:
 ------------------------------
@@ -19,8 +21,10 @@ What are the files included:
  - Example code todo a request (place the right URL and call the methods in Request.php)
 - App.php
  - Main class to run the application
-- Category.php, CategoryRefinement.php en Product.php
- - Example classes for getting the Category, CategoryRefinement and Product object
+- Category.php, CategoryRefinement.php, Basket.php, BasketItem.php, BasketProduct.php and Product.php
+ - Example classes for getting the Category, CategoryRefinement, Basket and Product object
+- Config.php
+ - File to set the Key and Secret and other stuff
 - index.php
  - Call to the class "App" and a global function to load the classes
 
