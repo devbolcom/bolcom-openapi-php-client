@@ -6,8 +6,9 @@ class Product {
 	private $price;
     private $description;
     private $thumbnailurl;
-    private $externalurl;
-    private $totalresultsize;
+    private $url;
+    private $offers;
+    private $offeridbolcom;
 	
 	public function __construct($productXml=NULL) {
 		if(!empty($productXml)) {
@@ -16,8 +17,8 @@ class Product {
 			$this->price = (string)$productXml->Offers->Offer->Price;
 			$this->description = (string)$productXml->ShortDescription;
 			$this->thumbnailurl = (string)$productXml->Images->Large;
-			$this->externalurl = (string)$productXml->Urls->Main;
-			$this->totalresultsize = (string)$productXml->TotalResultSize;
+			$this->url = (string)$productXml->Urls->Main;
+            $this->offers = (object)$productXml->Offers;
 		}
 	}
 	
@@ -40,7 +41,7 @@ class Product {
     public function getThumbnailurl() {
         if ($this->thumbnailurl == "" ){
             // Use a default bol.com image
-            $sThumbnailurl = "http://www.bol.com/nl/static/images/main/noimage_124x100default.gif";
+            $sThumbnailurl = DEFAULT_PRODUCT_IMAGE;
         } else $sThumbnailurl = $this->thumbnailurl;
         return $sThumbnailurl;
     }
@@ -48,9 +49,9 @@ class Product {
 	public function getExternalurl() {
         return $this->externalurl;
     }
-	
-    public function getTotalresultsize() {
-        return $this->totalresultsize;
+    
+    public function getOffers() {
+        return $this->offers;
     }
 }
 

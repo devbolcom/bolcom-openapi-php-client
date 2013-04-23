@@ -7,6 +7,7 @@ class Request {
 	private $secretAccessKey;
 	private $sessionId;
 	private $httpResponseCode;
+    private $httpFullHeader;
 	
 	public function __construct($accessKeyId, $secretAccessKey) {
 		try {
@@ -48,6 +49,7 @@ class Request {
 	}
 	
 	public function fetch($httpMethod, $url, $parameters='', $content='') {
+	
 		$today = gmdate('D, d F Y H:i:s \G\M\T');
 		
 		switch($httpMethod) {
@@ -56,8 +58,10 @@ class Request {
 				$contentType =	'application/xml';
 				break;
 			case 'POST':
-				$contentType =	'application/x-www-form-urlencoded';
-				break;
+            case 'PUT':
+            case 'DELETE':
+                $contentType =  'application/x-www-form-urlencoded';
+                break;
 		}
 
 		$headers = $httpMethod . " " . $url . $parameters . " HTTP/1.0\r\nContent-type: " . $contentType . "\r\n";
@@ -85,17 +89,28 @@ class Request {
 			$result .= fgets($socket);
 		}
 		fclose($socket);
-		
+
 		$this->httpResponseCode = intval(substr($result, 9, 3));
-		
-		$result = strstr($result, '<?xml');
-		
+        $aResult = explode("<?xml", $result);
+
+        if(count($aResult) > 1) {
+            $this->httpFullHeader = $aResult[0];
+            $result = "<?xml".$aResult[1];
+        } else {
+            $this->httpFullHeader = $result;
+            $result=FALSE;
+        }
+        		
 		return $result;
 	}
 	
 	public function getHttpResponseCode() {
 		return $this->httpResponseCode;
 	}
+
+    public function getFullHeader() {
+        return $this->httpFullHeader;
+    }
 	
 	public function getSessionId() {
 		return $this->sessionId;
