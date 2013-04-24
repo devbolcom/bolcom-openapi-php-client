@@ -95,7 +95,8 @@ class Request {
 
         if(count($aResult) > 1) {
             $this->httpFullHeader = $aResult[0];
-            $result = "<?xml".$aResult[1];
+            $result = "<?xml".$aResult[1]; 
+            if(BOL_API_FORMAT == 'JSON') $result = XmlToJson::ParseXML($result);
         } else {
             $this->httpFullHeader = $result;
             $result=FALSE;

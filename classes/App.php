@@ -94,8 +94,8 @@ class App {
         $xmlResponse = self::$testClient->getProduct('1002004010708531','?includeAttributes=true');
         if($bRaw) {
             self::printValue("Raw XML response");
-            self::printValue($xmlResponse);
             self::printValue('----');
+            self::printValue($xmlResponse);
         } else {
             $product = new Product($xmlResponse->Product);
             self::printProduct($product);
@@ -105,7 +105,6 @@ class App {
 
     private static function getRecommendations($bRaw=0) {
         //get recommendations /openapi/services/rest/catalog/v3/recommendations/{id} + queryParams
-        self::printValue('----');
         self::printValue('Performing recommendations request with productid 1002004010708531');
         self::printValue('----');
         $xmlResponse = self::$testClient->getRecommendations('1002004010708531','?includeAttributes=false');
@@ -241,8 +240,8 @@ class App {
             $xmlResponse = self::$testClient->getBasket();
             if($bRaw) {
                 self::printValue("Raw XML response");
-                self::printValue($xmlResponse);
                 self::printValue('----');
+                self::printValue($xmlResponse);
             } else {
                 $basket = new Basket($xmlResponse->Basket);
                 self::printBasketAmount($basket);
