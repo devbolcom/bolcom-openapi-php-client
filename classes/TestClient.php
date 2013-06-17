@@ -17,22 +17,16 @@ class TestClient {
     public function getProduct($id,$queryParams='') {
         $httpResponse = $this->requestHelper->fetch('GET', '/openapi/services/rest/catalog/v3/products/' . $id, $queryParams);
         
-        if(strstr($httpResponse, "<?xml")) {
-            if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
-        } else {
-            $response = $httpResponse;
-        }
+        if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
+
         return $response;
     }
 
     public function getRecommendations($id,$queryParams='') {
         $httpResponse = $this->requestHelper->fetch('GET', '/openapi/services/rest/catalog/v3/recommendations/' . $id, $queryParams);
         
-        if(strstr($httpResponse, "<?xml")) {
-            if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
-        } else {
-            $response = $httpResponse;
-        }
+        if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
+
         return $response;
     }
 
@@ -68,11 +62,7 @@ class TestClient {
 
         $httpResponse = $this->requestHelper->fetch('GET', '/openapi/services/rest/catalog/v3/listresults/' . $type . '/' . urlencode($categoryIdAndRefinements), $queryParams);
 
-        if(strstr($httpResponse, "<?xml")) {
-            if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
-        } else {
-            $response = $httpResponse;
-        } 
+        if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
         
         return $response;
     }
@@ -117,11 +107,7 @@ class TestClient {
 		
 		$httpResponse = $this->requestHelper->fetch('GET', '/openapi/services/rest/catalog/v3/searchresults/', $queryParams);
 
-        if(strstr($httpResponse, "<?xml")) {
-            if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
-        } else {
-            $response = $httpResponse;
-        } 
+        if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
         
 		return $response;
     }
@@ -131,19 +117,16 @@ class TestClient {
         $httpResponse = $this->requestHelper->fetch('POST', '/openapi/services/rest/checkout/v3/baskets/' . $id . '/' . $quantity . '/' . $ipAddress);
 
         if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
-        
+
         return $response;
     }
 
     public function getBasket() {
         $httpResponse = $this->requestHelper->fetch('GET', '/openapi/services/rest/checkout/v3/baskets');
         
-        if(strstr($httpResponse, "<?xml")) {
-            if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
-        } else {
-            $response = $httpResponse;
-        }
-        
+        if($httpResponse) $response = new SimpleXMLElement($httpResponse); else $response = $this->requestHelper->getFullHeader(); 
+
+
         return $response;
     }
 

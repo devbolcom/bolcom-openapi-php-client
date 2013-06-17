@@ -5,7 +5,8 @@ class App {
     public static $testClient = null;
 	public static function run() {
 	    self::$testClient = new TestClient(BOL_API_PUBLIC_KEY, BOL_API_PRIVATE_KEY);
-        $rooturl = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'];
+        $servername = str_replace("www.", "", $_SERVER['SERVER_NAME']);
+        $rooturl = 'http://'.$servername.$_SERVER['SCRIPT_NAME'];
         print('<h4>PHP example code</h4>');
         print('<ul>');
         print('<li><a href="'.$rooturl.'?action=getproduct">GET /openapi/services/rest/catalog/v3/products/</a> (<a href="'.$rooturl.'?action=getproductraw">* raw xml</a>)</li>');
@@ -33,28 +34,28 @@ class App {
                 self::ping();
 	            break;
 	        case 'getproduct':
-	            self::getProduct();
+	            self::getProduct(false,$params);
 	            break;
             case 'getproductraw':
-                self::getProduct(true);
+                self::getProduct(true,$params);
                 break;
             case 'getrecommendations':
-                self::getRecommendations();
+                self::getRecommendations(false,$params);
                 break;
             case 'getrecommendationsraw':
-                self::getRecommendations(true);
+                self::getRecommendations(true,$params);
                 break;
             case 'getlistresults':
-                self::getListresults();
+                self::getListresults(false,$params);
                 break;
             case 'getlistresultsraw':
-                self::getListresults(true);
+                self::getListresults(true,$params);
                 break;
             case 'searchresults':
                 self::searchResults(false,$params);
                 break;
             case 'searchresultsraw':
-                self::searchResults(true);
+                self::searchResults(true,$params);
                 break;
             case 'addbasket':
                 self::addBasket();
@@ -87,11 +88,12 @@ class App {
         self::printValue(" ");
     }
 
-	private static function getProduct($bRaw=0) {
+	private static function getProduct($bRaw=0,$params='') {
 	    //product request /openapi/services/rest/catalog/v3/products/{id} + queryParams
+	    if(!isset($params['productid'])) $productid = '1002004010708531'; else $productid = urldecode($params['productid']);
         self::printValue('Performing products request with productid 1002004010708531 and includeAttributes = true');
         self::printValue('----');
-        $xmlResponse = self::$testClient->getProduct('1002004010708531','?includeAttributes=true');
+        $xmlResponse = self::$testClient->getProduct($productid,'?includeAttributes=true');
         if($bRaw) {
             self::printValue("Raw XML response");
             self::printValue('----');
@@ -103,11 +105,12 @@ class App {
         self::printValue(" ");
 	}
 
-    private static function getRecommendations($bRaw=0) {
+    private static function getRecommendations($bRaw=0,$params='') {
         //get recommendations /openapi/services/rest/catalog/v3/recommendations/{id} + queryParams
+        if(!isset($params['productid'])) $productid = '1002004010708531'; else $productid = urldecode($params['productid']);
         self::printValue('Performing recommendations request with productid 1002004010708531');
         self::printValue('----');
-        $xmlResponse = self::$testClient->getRecommendations('1002004010708531','?includeAttributes=false');
+        $xmlResponse = self::$testClient->getRecommendations($productid,'?includeAttributes=false');
         if($bRaw!=0) {
             self::printValue("Raw XML response");
             self::printValue('----');
@@ -129,7 +132,7 @@ class App {
         }
     }
 
-    private static function getListresults($bRaw=0) {
+    private static function getListresults($bRaw=0,$params='') {
         //list products /openapi/services/rest/catalog/v3/listresults/{type}/{categoryIdAndRefinements} + queryParams
         self::printValue('Performing listresults request with type = "toplist_default" and includeRefinements = "Actie & Avontuur (6142)", "Te reserveren (7288)" and "Vanaf 12 jaar (6268)"');
         self::printValue('----');
@@ -165,10 +168,17 @@ class App {
     
     private static function searchResults($bRaw=0,$params='') {
         //search products /openapi/services/rest/catalog/v3/searchresults/ + queryParams
-        if(!isset($params['term'])) $term = 'Harry Potter'; else $term = urldecode($params['term']);
-        self::printValue('Performing searchresults request based on term = "'.$term.'", includeRefinements = "Nederlandse boeken (1430)", "Nederlandse boeken (8293)" and "Tot € 30 (4855)", 5 items and sorted on "sales_ranking"');
+        if(!isset($params['term'])) {
+            $term = 'Harry Potter';
+            $refinements = '1430 8293 4855';
+            self::printValue('Performing searchresults request based on term = "'.$term.'", includeRefinements = "Nederlandse boeken (1430)", "Nederlandse boeken (8293)" and "Tot &euro; 30 (4855)", 5 items and sorted on "sales_ranking"'); 
+        } else {
+            $term = urldecode($params['term']);
+            $refinements = '';
+            self::printValue('Performing searchresults request based on term = "'.$term.'" and sorted on "sales_ranking"'); 
+        }
         self::printValue('----');
-        $xmlResponse = self::$testClient->getSearchResults($term, '1430 8293 4855', 0, 5, 'sales_ranking', false, true, true, true);
+        $xmlResponse = self::$testClient->getSearchResults($term, $refinements, 0, 5, 'sales_ranking', false, true, true, true);
         if($bRaw!=0) {
             self::printValue("Raw XML response");
             self::printValue('----');
