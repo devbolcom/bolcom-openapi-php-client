@@ -22,6 +22,7 @@ class App {
         print('<li><a href="http://partner.bol.com/click/click?p=1&t=url&s=123456&f=API&url=https%3A%2F%2Fcheckout.bol.com%2Fbasket.html%3Furl%3Dhttp%3A%2F%2Fdevelopers.bol.com%2Fexamples%2Fphpexamplecodelibrary%2F%26name%3DMy+shop%26siteId%3D123456%26sessionId%3D'.$_SESSION['bolbasketsessionid'].'" target="_BLANK">The checkout based on session id anonymous basket</a></li>');
         print('</ul>');
 		print('</ul>');
+        print('Download dit voorbeeld op <a href="https://github.com/devbolcom/phpexamplecodelibrary">https://github.com/devbolcom/phpexamplecodelibrary</a>.<br>');
 		print('----');
         //convert html characters in $_REQUEST params for Cross-site scripting (XSS)
 		foreach ($_REQUEST as $key => $value) {
@@ -134,9 +135,17 @@ class App {
 
     private static function getListresults($bRaw=0,$params='') {
         //list products /openapi/services/rest/catalog/v3/listresults/{type}/{categoryIdAndRefinements} + queryParams
-        self::printValue('Performing listresults request with type = "toplist_default" and includeRefinements = "Actie & Avontuur (6142)", "Te reserveren (7288)" and "Vanaf 12 jaar (6268)"');
+        if(!isset($params['categoryids'])) {
+            $categoryids = '6142 7288 6268';
+            $sorting = 'publishing_date';
+            self::printValue('Performing listresults request with type = "toplist_default", sorting = "publishing_date" and includeRefinements = "Actie & Avontuur (6142)", "Te reserveren (7288)" and "Vanaf 12 jaar (6268)"'); 
+        } else {
+            $categoryids = urldecode($params['categoryids']);
+            $sorting = (!isset($params['sorting']) ? 'publishing_date' : $params['sorting']);
+            self::printValue('Performing listresults request with type = "toplist_default", sorting = "'.$params['sorting'].'" and categoryIds = "'.$params['categoryids'].'"'); 
+        }        
         self::printValue('----');
-        $xmlResponse = self::$testClient->getListResults('toplist_default', '6142 7288 6268', 0, 10, 'price', false, true, false, false);
+        $xmlResponse = self::$testClient->getListResults('toplist_default', $categoryids, 0, 100, $sorting, false, true, false, false);
         if($bRaw!=0) {
             self::printValue("Raw XML response");
             self::printValue('----');
@@ -170,15 +179,15 @@ class App {
         //search products /openapi/services/rest/catalog/v3/searchresults/ + queryParams
         if(!isset($params['term'])) {
             $term = 'Harry Potter';
-            $refinements = '1430 8293 4855';
+            $categoryids = '1430 8293 4855';
             self::printValue('Performing searchresults request based on term = "'.$term.'", includeRefinements = "Nederlandse boeken (1430)", "Nederlandse boeken (8293)" and "Tot &euro; 30 (4855)", 5 items and sorted on "sales_ranking"'); 
         } else {
             $term = urldecode($params['term']);
-            $refinements = '';
-            self::printValue('Performing searchresults request based on term = "'.$term.'" and sorted on "sales_ranking"'); 
+            $categoryids = (!isset($params['categoryids']) ? null : $params['categoryids']);
+            self::printValue('Performing searchresults request based on term = "'.$term.'", categoryIds = "'.$categoryids.'" and sorted on "sales_ranking"'); 
         }
         self::printValue('----');
-        $xmlResponse = self::$testClient->getSearchResults($term, $refinements, 0, 5, 'sales_ranking', false, true, true, true);
+        $xmlResponse = self::$testClient->getSearchResults($term, $categoryids, 0, 5, 'sales_ranking', false, true, true, true);
         if($bRaw!=0) {
             self::printValue("Raw XML response");
             self::printValue('----');
