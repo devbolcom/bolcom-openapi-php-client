@@ -2,7 +2,7 @@
 
 class XmlToJson {
 
-    public function ParseXML($xmlinput) {
+    public static function ParseXML($xmlinput) {
 
         $xmlinput = str_replace(array("\n", "\r", "\t"), '', $xmlinput);
 
