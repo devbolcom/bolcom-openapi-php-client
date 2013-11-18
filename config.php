@@ -7,6 +7,6 @@ define('BOL_API_SERVER', 'openapi.bol.com');
 define('BOL_API_PORT', '443');
 define('BOL_API_FORMAT', 'XML'); //XML or JSON (converted XmlToJson in request.php)
 
-Define('DEFAULT_PRODUCT_IMAGE', 'http://www.bol.com/nl/static/images/main/noimage_124x100default.gif');
+define('DEFAULT_PRODUCT_IMAGE', 'http://www.bol.com/nl/static/images/main/noimage_124x100default.gif');
 
 ?>
