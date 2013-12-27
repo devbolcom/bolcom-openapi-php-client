@@ -2,13 +2,14 @@
 
 class Request {
 	const SERVER = BOL_API_SERVER;
-	private $accessKey;
 	const PORT = BOL_API_PORT;
+    const DEBUG = BOL_API_DEBUG_MODE;   
+    private $accessKey;
 	private $secretAccessKey;
 	private $sessionId;
 	private $httpResponseCode;
-    private $httpFullHeader;
-	
+    private $httpFullHeader; 
+    
 	public function __construct($accessKeyId, $secretAccessKey) {
 		try {
 			$this->accessKey = $accessKeyId;
@@ -51,6 +52,8 @@ class Request {
 	public function fetch($httpMethod, $url, $parameters='', $content='') {
 	
 		$today = gmdate('D, d F Y H:i:s \G\M\T');
+
+        if(DEBUG) echo '<pre>Debug info<br><br>-----<br><br>'.$url.$parameters.'<br><br>----<br></pre>';
 		
 		switch($httpMethod) {
 			default:
@@ -95,8 +98,7 @@ class Request {
 
         if(count($aResult) > 1) {
             $this->httpFullHeader = $aResult[0];
-            $result = "<?xml".$aResult[1]; 
-            if(BOL_API_FORMAT == 'JSON') $result = XmlToJson::ParseXML($result);
+            $result = "<?xml".$aResult[1];
         } else {
             $this->httpFullHeader = $result;
             $result=FALSE;

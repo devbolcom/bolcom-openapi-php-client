@@ -7,7 +7,7 @@ class App {
 	    self::$testClient = new TestClient(BOL_API_PUBLIC_KEY, BOL_API_PRIVATE_KEY);
         $servername = str_replace("www.", "", $_SERVER['SERVER_NAME']);
         $rooturl = 'http://'.$servername.$_SERVER['SCRIPT_NAME'];
-        print('<h4>PHP example code</h4>');
+        print('<html><body style="margin:20px;"><h4>PHP example code</h4>');
         print('<ul>');
         print('<li><a href="'.$rooturl.'?action=getproduct">GET /openapi/services/rest/catalog/v3/products/</a> (<a href="'.$rooturl.'?action=getproductraw">* raw xml</a>)</li>');
         print('<li><a href="'.$rooturl.'?action=getrecommendations">GET /openapi/services/rest/catalog/v3/recommendations/</a> (<a href="'.$rooturl.'?action=getrecommendationsraw">* raw xml</a>)</li>');
@@ -187,7 +187,7 @@ class App {
             self::printValue('Performing searchresults request based on term = "'.$term.'", categoryIds = "'.$categoryids.'" and sorted on "sales_ranking"'); 
         }
         self::printValue('----');
-        $xmlResponse = self::$testClient->getSearchResults($term, $categoryids, 0, 5, 'sales_ranking', false, true, true, true);
+        $xmlResponse = self::$testClient->getSearchResults($term, $categoryids, 0, 100, 'sales_ranking', 'false', 'true', 'true', 'true', 'false');
         if($bRaw!=0) {
             self::printValue("Raw XML response");
             self::printValue('----');

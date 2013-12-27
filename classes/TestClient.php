@@ -67,7 +67,7 @@ class TestClient {
         return $response;
     }
 
-	public function getSearchResults($term, $categoryIdAndRefinements, $offset, $nrProducts, $sortingMethod, $sortingAscending, $includeProducts, $includeCategories, $includeRefinements) {
+	public function getSearchResults($term, $categoryIdAndRefinements, $offset, $nrProducts, $sortingMethod, $sortingAscending, $includeProducts, $includeCategories, $includeRefinements, $isProductIdSearch) {
 		$result = '';
 		$queryParams = '';
 		$separator = '?';
@@ -104,6 +104,10 @@ class TestClient {
 			$queryParams .=	$separator . 'includeRefinements=' . urlencode($includeRefinements);
 			$separator = '&';
 		}
+        if(!empty($isProductIdSearch)) {
+            $queryParams .= $separator . 'isProductIdSearch=' . urlencode($isProductIdSearch);
+            $separator = '&';
+        }
 		
 		$httpResponse = $this->requestHelper->fetch('GET', '/openapi/services/rest/catalog/v3/searchresults/', $queryParams);
 

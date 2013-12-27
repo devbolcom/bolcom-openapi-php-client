@@ -1,8 +1,5 @@
 phpexamplecode
 ==============
-
-Example code for using the bol.com Open API.
-
 If you want to contribute to this code sample. You can do a Fork and a Pull request on this repo.
 
 This application does the following requests:
