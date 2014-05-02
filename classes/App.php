@@ -8,6 +8,7 @@ class App {
         $servername = str_replace("www.", "", $_SERVER['SERVER_NAME']);
         $rooturl = 'http://'.$servername.$_SERVER['SCRIPT_NAME'];
         print('<html><body style="margin:20px;"><h4>PHP example code</h4>');
+		print("In this example you can test the following calls from the bol.com Open API (Library version: ".LIBRARY_VERSION." API version: 3):");
         print('<ul>');
         print('<li><a href="'.$rooturl.'?action=getproduct">GET /openapi/services/rest/catalog/v3/products/</a> (<a href="'.$rooturl.'?action=getproductraw">* raw xml</a>)</li>');
         print('<li><a href="'.$rooturl.'?action=getrecommendations">GET /openapi/services/rest/catalog/v3/recommendations/</a> (<a href="'.$rooturl.'?action=getrecommendationsraw">* raw xml</a>)</li>');

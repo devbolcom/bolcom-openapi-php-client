@@ -52,13 +52,11 @@ class Request {
 	public function fetch($httpMethod, $url, $parameters='', $content='') {
 	
 		$today = gmdate('D, d F Y H:i:s \G\M\T');
-
-        if(DEBUG) echo '<pre>Debug info<br><br>-----<br><br>'.$url.$parameters.'<br><br>----<br></pre>';
 		
 		switch($httpMethod) {
 			default:
 			case 'GET':
-				$contentType =	'application/xml';
+				$contentType =	'application/xml; charset=UTF-8';
 				break;
 			case 'POST':
             case 'PUT':
@@ -103,7 +101,15 @@ class Request {
             $this->httpFullHeader = $result;
             $result=FALSE;
         }
-        		
+
+        if(self::DEBUG) {
+            echo '<pre>Debug info<br><br>----<br><br><strong>http request:</strong><br>https://'.self::SERVER.$url.$parameters.'<br><br>';
+			echo '<strong>header request:</strong><br>'.print_r($headers, 1).'<br>';
+            if ($content) echo '<strong>content:</strong><br>'.htmlspecialchars($content).'<br><br>';
+            echo '<strong>header response:</strong><br>'.self::getFullHeader();
+            echo '----</pre>';
+        }
+
 		return $result;
 	}
 	

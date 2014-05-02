@@ -11,6 +11,6 @@ define('BOL_API_DEBUG_MODE', 'TRUE');
 define('DEFAULT_PRODUCT_IMAGE', 'http://www.bol.com/nl/static/images/main/noimage_124x100default.gif');
 
 //library vars
-define('LIBRARY_VERSION_DATE','27-12-2013');
+define('LIBRARY_VERSION','v1.0.0');
 
 ?>
