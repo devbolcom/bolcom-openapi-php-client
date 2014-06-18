@@ -7,9 +7,9 @@ class BasketItem {
         
     public function __construct($basketXml=NULL) {
         if(!empty($basketXml)) {
-            $this->id = (string)$basketXml->Id;
-            $this->price = (string)$basketXml->Price;
-            $this->quantity = (string)$basketXml->Quantity;
+            $this->id = (string)$basketXml->id;
+            $this->price = (string)$basketXml->price;
+            $this->quantity = (string)$basketXml->quantity;
         }
     }
     

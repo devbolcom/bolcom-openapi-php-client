@@ -14,16 +14,16 @@ class BasketItemProduct {
             
     public function __construct($basketXml=NULL) {
         if(!empty($basketXml)) {
-            $this->id = (string)$basketXml->Id;  
-            $this->title = (string)$basketXml->Title;
-            $this->type = (string)$basketXml->Type;
-            $this->price = (string)$basketXml->Price;
-            $this->publisher = (string)$basketXml->Publisher;
-            $this->description = (string)$basketXml->ShortDescription;
-            $this->thumbnailurl = (string)$basketXml->Images->Large;
-            $this->url = (string)$basketXml->Urls->Main;
-            $this->offerid = (string)$basketXml->Offers->Offer->Id;
-            $this->offerprice = (string)$basketXml->Offers->Offer->Price;
+            $this->id = (string)$basketXml->id;  
+            $this->title = (string)$basketXml->title;
+            $this->type = (string)$basketXml->type;
+            $this->price = (string)$basketXml->price;
+            $this->publisher = (string)$basketXml->publisher;
+            $this->description = (string)$basketXml->shortDescription;
+            $this->thumbnailurl = (string)$basketXml->images->large;
+            $this->url = (string)$basketXml->urls->main;
+            $this->offerid = (string)$basketXml->offers->offer->id;
+            $this->offerprice = (string)$basketXml->offers->offer->price;
         }
     }
     

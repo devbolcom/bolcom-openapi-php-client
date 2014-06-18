@@ -1,0 +1,23 @@
+{
+    "name": "bolcom/bolcom-openapi-php-client",
+    "description": "Client library for the bol.com Open API",
+    "keywords": ["bolcom","openapi"],
+    "type": "library",
+    "homepage": "https://developers.bol.com",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "bol.com",
+            "homepage": "https://github.com/devbolcom/phpexamplecode-v4/contributors"
+        }
+    ],
+	"autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "require": {
+        "php": ">=5.0"
+    },
+    "include-path": ["src/"]
+}

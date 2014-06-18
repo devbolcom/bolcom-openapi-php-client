@@ -15,17 +15,17 @@ class Basket {
         
     public function __construct($basketXml=NULL) {
         if(!empty($basketXml)) {
-            $this->totalamountarticles = (string)$basketXml->TotalAmountArticles;
-            $this->subtotal = (string)$basketXml->SubTotal;
-            $this->shippingfee = (string)$basketXml->ShippingFee;
-            $this->total = (string)$basketXml->Total;
-            $this->servicefee = (string)$basketXml->ServiceFee;
-            $this->giftwrapfee = (string)$basketXml->GiftWrapFee;
-            $this->totalquantity = (string)$basketXml->TotalQuantity;
-            $this->shippableabroad = (string)$basketXml->ShippableAbroad;
-            $this->combinable = (string)$basketXml->Combinable;
-            $this->openforuse = (string)$basketXml->OpenForUse;
-            $this->specialrequirement = (string)$basketXml->SpecialRequirements->Requirement;
+            $this->totalamountarticles = (string)$basketXml->totalAmountArticles;
+            $this->subtotal = (string)$basketXml->subTotal;
+            $this->shippingfee = (string)$basketXml->shippingFee;
+            $this->total = (string)$basketXml->total;
+            $this->servicefee = (string)$basketXml->serviceFee;
+            $this->giftwrapfee = (string)$basketXml->giftWrapFee;
+            $this->totalquantity = (string)$basketXml->totalQuantity;
+            $this->shippableabroad = (string)$basketXml->shippableAbroad;
+            $this->combinable = (string)$basketXml->combinable;
+            $this->openforuse = (string)$basketXml->openForUse;
+            $this->specialrequirement = (string)$basketXml->specialRequirements->requirement;
         }
     }
     
