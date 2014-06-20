@@ -35,7 +35,7 @@ If you want to contribute to this library. You can do a Fork and a Pull request 
  - Call to the class "Example" with key, format and debug_mode and a global function to load the classes
 
 ## Minimum requirements: ##
-1. PHP 5.3.2 (or higher)
+- PHP 5.3.2 (or higher)
 
 
 ## Installation and running the example: ##
@@ -53,7 +53,7 @@ See the examples/ directory for examples of the key client features.
 ```PHP
 <?php
 	function __autoload($name) {
-		require('/src/bolcom/' . $name . '.php');
+		require('src/bolcom/' . $name . '.php');
 	}
 	$apiClient = new Client("YOUR_APP_KEY","RESPONSE_FORMAT","DEBUG_MODE");
 	$response = $apiClient->getProduct('1002004010708531');
