@@ -14,7 +14,7 @@
     "require": {
         "php": ">=5.3.2"
     },
-	"autoload": {
+    "autoload": {
         "psr-0": { "bolcom": "src/" }
     }
     "include-path": ["src/"]
