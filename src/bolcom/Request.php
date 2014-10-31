@@ -72,7 +72,7 @@ class Request {
         $json_request = (json_decode($body) != NULL) ? true : false;
 
         if(!$json_request) {
-            if(strpos($body, "<?xml")) $body_return = new SimpleXMLElement($body); else $body_return = $body;
+            if(strpos($body, "<?xml") === false) $body_return = $body; else $body_return = new SimpleXMLElement($body);
         } else {
             $body_return = json_decode($body);
         }
