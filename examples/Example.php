@@ -6,7 +6,7 @@ class Example {
   public static $apiClient = null;
   public static $bolPartnerSiteId;
   public static function run() {
-    $bol_api_key = 'YOUR_API_KEY_HERE';
+    $bol_api_key = '468FC7E0215A4B18B23FAFDF97D5FA10';
     $bol_api_format = 'json';
     $bol_api_debug_mode = 0;
     $bol_api_library_version = 'v.2.1.0';
@@ -50,7 +50,7 @@ class Example {
     print('<li><strong>Optional step 4: Remove all current active browser sessions</strong> <a href="' . self::$rooturl . '?action=destroySession">Call session_destroy() in php</a></li>');
     print('</ul>');
     print('</ul>');
-    print("See the V4 beta documentation <a href='http://developers.bol.com/documentatie/handleiding' target='_blank'>here</a>. Download this example on <a href='https://github.com/devbolcom/bolcom-openapi-php-client'>https://github.com/devbolcom/bolcom-openapi-php-client</a>.<br>");
+    print("See the V4 documentation <a href='https://developers.bol.com/documentatie/open-api/handleiding/' target='_blank'>here</a>. Download this example on <a href='https://github.com/devbolcom/bolcom-openapi-php-client'>https://github.com/devbolcom/bolcom-openapi-php-client</a>.<br>");
     print('----');
 
     // convert html characters in $_REQUEST params for Cross-site scripting (XSS)
@@ -163,7 +163,7 @@ class Example {
       self::printValue('----');
       self::printValue($response);
     } else {
-      $product = new Product($response->Products[0]);
+      $product = new Product($response->products[0]);
       self::printProduct($product);
     }
     self::printValue(" ");
@@ -609,7 +609,7 @@ class Example {
         self::printValue("getAuthtokens call response");
         self::printValue('----');
         $authurl = 'https://m.bol.com/nl/apps/?code=' . $response -> code;
-        self::printValue('Auth url: <a href="' . $authurl . '" target="_blank">' . $authurl . '</a> (advised to use)');
+        self::printValue('Auth url: <a href="' . $authurl . '" target="_blank">' . $authurl . '</a>');
         self::printValue('Private token "' . $_SESSION['privatetoken'] . '"<br>added to session var');
       }
     } else {
@@ -667,7 +667,8 @@ class Example {
     // get a refferer code and call /checkout/v4/referrers/{referrerCode} + sessionid
     if (self::checkSession()) {
       self::$apiClient -> setSessionId($_SESSION['sessionid']);
-      $response = self::$apiClient -> setRefferer(self::getReferrerFromPartnerUrl());
+      $refferrerfromurl = self::getReferrerFromPartnerUrl();
+      $response = self::$apiClient -> setRefferer($refferrerfromurl);
       self::printValue("No JSON returned, returning http header");
       self::printValue('----');
       self::printValue($response);
@@ -679,10 +680,8 @@ class Example {
     // getting a refferer code by making a http call to http://partner.bol.com/click/click and reading the header
     $url = 'http://partner.bol.com/click/click?p=1&t=url&s=' . self::$bolPartnerSiteId . '&f=API&url=http%3A%2F%2Fwww.bol.com%2Fnl%2F';
     $headerresponse = get_headers($url);
-    $location = explode(" ", $headerresponse[4]);
-    $url = parse_url($location[1]);
-    parse_str($url['query'], $query);
-    $referrer = $query['Referrer'];
+    $location = explode(" ", $headerresponse[3]);
+    $referrer = $location[1];
     return $referrer;
   }
 
