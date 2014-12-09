@@ -6,7 +6,7 @@ class Example {
   public static $apiClient = null;
   public static $bolPartnerSiteId;
   public static function run() {
-    $bol_api_key = '468FC7E0215A4B18B23FAFDF97D5FA10';
+    $bol_api_key = 'YOUR_API_KEY_HERE';
     $bol_api_format = 'json';
     $bol_api_debug_mode = 0;
     $bol_api_library_version = 'v.2.1.0';
