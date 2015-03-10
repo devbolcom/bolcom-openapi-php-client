@@ -52,7 +52,17 @@ class Request {
 		if (!$socket) {
 			throw new Exception("{$errstr} ({$errno})");
 		}
-		
+
+		$opts = array(
+			'ssl' => array(
+				'verify_peer' => TRUE,		// Override default FALSE for PHP < 5.6.0
+				'verify_peer_name' => TRUE,	// Override default FALSE for PHP < 5.6.0
+				'allow_self_signed' => FALSE,	// Disallow self signed certificates
+				'SNI_enabled' => TRUE,		// Allow for the API server to use SNI
+			),
+		);
+		stream_context_set_option($socket, $opts);
+
 		fputs($socket, $headers);
 		fputs($socket, $content);
 		
