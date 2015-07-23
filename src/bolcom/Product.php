@@ -48,7 +48,7 @@ class Product {
   }
 
   public function getExternalurl() {
-    return $this -> externalurl;
+    return $this -> url;
   }
 
   public function getOffers() {
