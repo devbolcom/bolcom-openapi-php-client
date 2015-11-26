@@ -52,21 +52,24 @@ http://developers.bol.com/documentatie/handleiding/
 See the examples/ directory for examples of the key client features.
 
 ```php
-    function __autoload($className) {
-        $fileName = preg_replace('/^BolCom\\\\(\w+)/', 'src/bolcom/$1.php', $className);
-        if (file_exists($fileName)) {
-            return require_once $fileName;
-        }
+function __autoload($className)
+{
+    $fileName = preg_replace('/^BolCom\\\\(\w+)/', 'src/bolcom/$1.php', $className);
+    if (file_exists($fileName)) {
+        return require_once $fileName;
     }
+}
 
-	$apiClient = new BolCom\Client("YOUR_APP_KEY","RESPONSE_FORMAT","DEBUG_MODE");
-	$response = $apiClient->getProduct('1002004010708531');
-	var_dump($response);
+$apiClient = new BolCom\Client('YOUR_APP_KEY', 'json');
+$response = $apiClient->getProduct('1002004010708531');
+var_dump($response);
 ```
 
 ## Using Composer ##
 
-    composer require "bolcom/bolcom-openapi-php-client" "dev-master"
+```bash
+composer require "bolcom/bolcom-openapi-php-client" "dev-master"
+```
 
 When using composer, classes are autoloaded automatically.
 
