@@ -50,12 +50,30 @@ http://developers.bol.com/documentatie/handleiding/
 
 ## Basic Example ##
 See the examples/ directory for examples of the key client features.
-```PHP
-<?php
-	function __autoload($name) {
-		require('src/bolcom/' . $name . '.php');
-	}
-	$apiClient = new Client("YOUR_APP_KEY","RESPONSE_FORMAT","DEBUG_MODE");
+
+```php
+    function __autoload($className) {
+        $fileName = preg_replace('/^BolCom\\\\(\w+)/', 'src/bolcom/$1.php', $className);
+        if (file_exists($fileName)) {
+            return require_once $fileName;
+        }
+    }
+
+	$apiClient = new BolCom\Client("YOUR_APP_KEY","RESPONSE_FORMAT","DEBUG_MODE");
 	$response = $apiClient->getProduct('1002004010708531');
 	var_dump($response);
 ```
+
+## Using Composer ##
+
+    composer require "bolcom/bolcom-openapi-php-client" "dev-master"
+
+When using composer, classes are autoloaded automatically.
+
+## Running Tests ##
+
+```bash
+APP_KEY=YOUR_APP_KEY phpunit --bootstrap=vendor/autoload.php tests
+```
+
+
