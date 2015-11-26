@@ -16,7 +16,7 @@
     },
 	"autoload": {
         "psr-4": {
-            "BolCom\\": "src/bolcom/",
+            "BolCom\\": "src/BolCom/",
             "Tests\\": "tests/"
         }
     },
