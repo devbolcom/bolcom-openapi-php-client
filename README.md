@@ -73,7 +73,7 @@ When using composer, classes are autoloaded automatically.
 ## Running Tests ##
 
 ```bash
-APP_KEY=YOUR_APP_KEY phpunit --bootstrap=vendor/autoload.php tests
+APP_KEY=YOUR_APP_KEY phpunit
 ```
 
 
