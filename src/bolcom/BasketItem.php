@@ -1,30 +1,34 @@
 <?php
+namespace BolCom;
 
-class BasketItem {
+class BasketItem
+{
     private $id;
     private $price;
     private $quantity;
-        
-    public function __construct($basketXml=NULL) {
-        if(!empty($basketXml)) {
+
+    public function __construct($basketXml = NULL)
+    {
+        if (!empty($basketXml)) {
             $this->id = (string)$basketXml->id;
             $this->price = (string)$basketXml->price;
             $this->quantity = (string)$basketXml->quantity;
         }
     }
-    
-    public function getId() {
+
+    public function getId()
+    {
         return $this->id;
     }
-    
-    public function getPrice() {
+
+    public function getPrice()
+    {
         return $this->price;
     }
-    
-    public function getQuantity() {
+
+    public function getQuantity()
+    {
         return $this->quantity;
     }
-    
-}
 
-?>
+}
