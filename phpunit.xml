@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="true"
+         syntaxCheck="false">
+    <testsuites>
+        <testsuite name="Bol.com Open API Tests">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">app/</directory>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="APP_KEY" value="YOUR_APP_KEY"/>
+    </php>
+</phpunit>
