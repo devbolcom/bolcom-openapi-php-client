@@ -53,9 +53,9 @@ class Request
         }
         $headers .= "\r\n";
 
-        $socket = fsockopen('ssl://api.bol.com', '443', $errno, $errstr, 30);
+        $socket = @fsockopen('ssl://api.bol.com', '443', $errno, $errstr, 30);
         if (!$socket) {
-            throw new Exception("{$errstr} ({$errno})");
+            throw new \Exception("{$errstr} ({$errno})");
         }
 
         $opts = array(
