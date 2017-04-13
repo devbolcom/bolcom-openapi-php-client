@@ -1,1 +1,5 @@
 /vendor
+.DS_Store
+thumbs.db
+.idea
+.nbproject
