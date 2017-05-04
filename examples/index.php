@@ -3,8 +3,7 @@ session_start();
 
 function __autoload($className)
 {
-    $fileName = preg_replace('/^BolCom\\\\(\w+)/', '../src/bolcom/$1.php', $className);
-    // var_dump($fileName);
+    $fileName = preg_replace('/^BolCom\\\\(\w+)/', '../src/BolCom/$1.php', $className);
     if (file_exists($fileName)) {
         return require_once $fileName;
     }
