@@ -1,11 +1,5 @@
 # bol.com OpenAPI PHP client #
 
-[![Build Status](https://travis-ci.org/devbolcom/bolcom-openapi-php-client.png)](https://travis-ci.org/devbolcom/bolcom-openapi-php-client)
-[![Latest Stable Version](https://poser.pugx.org/bolcom/bolcom-openapi-php-client/v/stable)](https://packagist.org/packages/bolcom/bolcom-openapi-php-client)
-[![Total Downloads](https://poser.pugx.org/bolcom/bolcom-openapi-php-client/downloads)](https://packagist.org/packages/bolcom/bolcom-openapi-php-client)
-[![Latest Unstable Version](https://poser.pugx.org/bolcom/bolcom-openapi-php-client/v/unstable)](https://packagist.org/packages/bolcom/bolcom-openapi-php-client)
-[![License](https://poser.pugx.org/bolcom/bolcom-openapi-php-client/license)](https://packagist.org/packages/bolcom/bolcom-openapi-php-client)
-
 Client library with example code for using the bol.com Open API Version 4. If you need a client/example for Version 3 of the Open API you can use https://github.com/devbolcom/bolcom-openapi-php-client/tree/bolcom-openapi-php-client-v3
 
 If you want to contribute to this library. You can do a Fork and a Pull request on this repo.
