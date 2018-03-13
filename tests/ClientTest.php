@@ -1,10 +1,9 @@
 <?php
 
-namespace Tests;
-
+use PHPUnit\Framework\TestCase;
 use BolCom\Client;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     /**
      * @var Client
