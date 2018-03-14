@@ -12,7 +12,7 @@ class Example
         $bol_api_key = 'YOUR_API_KEY_HERE';
         $bol_api_format = 'json';
         $bol_api_debug_mode = 0;
-        $bol_api_library_version = 'v.2.2.0';
+        $bol_api_library_version = 'v.2.3.0';
         self::$bolPartnerSiteId = '12345';
         self::$apiClient = new BolCom\Client($bol_api_key, $bol_api_format, $bol_api_debug_mode);
         $servername = str_replace("www.", "", $_SERVER['SERVER_NAME']);
