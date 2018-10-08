@@ -41,18 +41,18 @@ If you want to contribute to this library. You can do a Fork and a Pull request 
  - Call to the class "Example" with key, format and debug_mode and a global function to load the classes
 
 ## Minimum requirements: ##
-- PHP 5.3.2 (or higher)
+- PHP 5.6 (or higher)
 
 
 ## Installation and running the example: ##
 
 1. Get the code by forking or downloading the zip or installing Composer
 2. Upload all files (keep the directory structure) to a web-server
-3. Edit the example file "examples/Example.php" to add the right AccessKeyID (request this key at https://developers.bol.com/inloggen/?action=register), response format (xml/json) and debug mode bool (0/1)
+3. Edit the example file "examples/Example.php" to add the right AccessKeyID (request this key at https://partnerblog.bol.com/register/), response format (xml/json) and debug mode bool (0/1)
 4. Open the browser and call the URL where your index.php file is located
 
 ## Developer Documentation ##
-http://developers.bol.com/documentatie/handleiding/
+https://partnerblog.bol.com/documentatie/open-api/
 
 ## Basic Example ##
 See the examples/ directory for examples of the key client features.
@@ -74,7 +74,7 @@ var_dump($response);
 ## Using Composer ##
 
 ```bash
-composer require "bolcom/bolcom-openapi-php-client" "dev-master"
+composer require "bolcom/bolcom-openapi-php-client" "~2.3"
 ```
 
 When using composer, classes are autoloaded automatically.
