@@ -63,7 +63,7 @@ class BasketItemProduct
     {
         if ($this->thumbnailurl == "") {
             // Use a default bol.com image
-            $sThumbnailurl = DEFAULT_PRODUCT_IMAGE;
+            $sThumbnailurl = "https://s.s-bol.com/nl/static/images/main/noimage_124x100default.gif";
         } else
             $sThumbnailurl = $this->thumbnailurl;
         return $sThumbnailurl;
