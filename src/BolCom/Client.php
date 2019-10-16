@@ -57,7 +57,62 @@ class Client
         return $httpResponse;
     }
 
-    public function getLists($type, $ids, $offset, $limit, $sort, $sortingAscending, $includeProducts, $includeCategories, $includeRefinements, $includeAttributes = false, $listId = '')
+    /**
+     * Get List
+     *
+     * @access public
+     * @see https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4lists/
+     * @param string $type
+     * @param array $ids
+     * @param string|null $dataOutput
+     * @param string|null $sort
+     * @param string|null $offers
+     * @param int $limit
+     * @param int $offset
+     * @param bool $includeAttributes
+     * @param int|null $listId
+     * @param string $format
+     * @param string $country
+     * @param int|null $retailId
+     * @return stdClass
+     */
+    public function getLists(string $type = '',
+        array $ids = [],
+        ?string $dataOutput = null,
+        ?string $sort = null,
+        ?string $offers = null,
+        int $limit = 10,
+        int $offset = 0,
+        bool $includeAttributes = false,
+        ?int $listId = null,
+        string $format = 'json',
+        string $country = 'NL',
+        ?int $retailId = null
+    ): \stdClass {
+        $queryParams = "?" . http_build_query([
+            'type' => $type,
+            'ids' => implode(",", $ids),
+            'dataoutput' => $dataOutput,
+            'sort' => $sort,
+            'offers' => $offers,
+            'limit' => $limit,
+            'offset' => $offset,
+            'includeattributes' => (string)$includeAttributes,
+            'listid' => $listId,
+            'format' => $format,
+            'country' => $country,
+            'retailid' => $retailId
+        ]);
+        $httpResponse = $this->requestHelper->fetch('GET', '/catalog/v4/lists/', $queryParams);
+
+        if (!$httpResponse) {
+            $httpResponse = $this->requestHelper->getFullHeader();
+        }
+
+        return $httpResponse;
+    }
+
+    public function getListsBAK($type, $ids, $offset, $limit, $sort, $sortingAscending, $includeProducts, $includeCategories, $includeRefinements, $includeAttributes = false, $listId = '')
     {
         $queryParams = '';
         $separator = '?';
