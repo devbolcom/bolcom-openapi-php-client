@@ -62,37 +62,56 @@ class Client
      *
      * @access public
      * @see https://partnerblog.bol.com/documentatie/open-api/handleiding/api-requests/catalog/get-catalogv4lists/
-     * @param string $type
+     * @see https://partnerblog.bol.com/documentatie/open-api/handleiding/enumerations/productlisttype/
+     * @see https://partnerblog.bol.com/documentatie/open-api/handleiding/enumerations/sortingmethods/
+     *
      * @param array $ids
-     * @param string|null $dataOutput
-     * @param string|null $sort
-     * @param string|null $offers
-     * @param int $limit
+     * @param string $listType
      * @param int $offset
-     * @param bool $includeAttributes
-     * @param int|null $listId
-     * @param string $format
+     * @param int $limit
+     * @param string|null $sort
      * @param string $country
+     * @param string|null $offers
+     * @param bool $includeAttributes
+     * @param bool $includeProducts
+     * @param bool $includeCategories
+     * @param bool $includeRefinements
+     * @param int|null $listId
      * @param int|null $retailId
-     * @return stdClass
+     * @param string $format
+     * @return \stdClass
      */
-    public function getLists(string $type = '',
-        array $ids = [],
-        ?string $dataOutput = null,
-        ?string $sort = null,
-        ?string $offers = null,
-        int $limit = 10,
+    public function getLists(array $ids = [],
+        string $listType = '',
         int $offset = 0,
-        bool $includeAttributes = false,
-        ?int $listId = null,
-        string $format = 'json',
+        int $limit = 10,
+        ?string $sort = null,
         string $country = 'NL',
-        ?int $retailId = null
+        ?string $offers = null,
+        bool $includeAttributes = false,
+        bool $includeProducts = false,
+        bool $includeCategories = false,
+        bool $includeRefinements = false,
+        ?int $listId = null,
+        ?int $retailId = null,
+        string $format = 'json'
     ): \stdClass {
+
+        $dataOutput = [];
+        if ($includeProducts) {
+            $dataOutput[] = 'products';
+        }
+        if ($includeCategories) {
+            $dataOutput[] = 'categories';
+        }
+        if ($includeRefinements) {
+            $dataOutput[] = 'refinements';
+        }
+
         $queryParams = "?" . http_build_query([
             'type' => $type,
             'ids' => implode(",", $ids),
-            'dataoutput' => $dataOutput,
+            'dataoutput' => implode(",", $dataOutput),
             'sort' => $sort,
             'offers' => $offers,
             'limit' => $limit,
