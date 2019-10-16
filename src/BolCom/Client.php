@@ -107,9 +107,8 @@ class Client
         if ($includeRefinements) {
             $dataOutput[] = 'refinements';
         }
-
         $queryParams = "?" . http_build_query([
-            'type' => $type,
+            'type' => $listType,
             'ids' => implode(",", $ids),
             'dataoutput' => implode(",", $dataOutput),
             'sort' => $sort,
